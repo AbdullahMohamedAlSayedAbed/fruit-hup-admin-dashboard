@@ -3,23 +3,31 @@ import 'package:fruithupdashboard/core/utils/app_style.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField(
-      {super.key, required this.hintText, this.keyboardType, this.suffixIcon, this.onSaved,  this.obscureText = false});
+      {super.key,
+      required this.hintText,
+      this.keyboardType,
+      this.suffixIcon,
+      this.onSaved,
+      this.obscureText = false,
+      this.maxLines = 1});
   final String hintText;
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
   final void Function(String?)? onSaved;
   final bool obscureText;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: obscureText,
-      onSaved: onSaved,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter some text';
-        }
-        return null;
-      },
+        obscureText: obscureText,
+        maxLines: maxLines,
+        onSaved: onSaved,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
         keyboardType: keyboardType,
         decoration: InputDecoration(
             suffixIcon: suffixIcon,
